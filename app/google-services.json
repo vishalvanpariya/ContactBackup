@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "1059213179152",
+    "firebase_url": "https://realtimedatabase-642a6.firebaseio.com",
+    "project_id": "realtimedatabase-642a6",
+    "storage_bucket": "realtimedatabase-642a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059213179152:android:52f8bfaeffc6e56e",
+        "android_client_info": {
+          "package_name": "com.example.vishal.local_problem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059213179152-12jgedeljs68s6abr95i5571n3vqnc33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vishal.local_problem",
+            "certificate_hash": "d5ffb66785f5fb59a7ed01f3304f2931228b87a3"
+          }
+        },
+        {
+          "client_id": "1059213179152-u4tqqd8toolf8ltmpa01it1gk9hes0ms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vishal.local_problem",
+            "certificate_hash": "9dd93f78dc5fe37f35d1c40dd72339686ac02096"
+          }
+        },
+        {
+          "client_id": "1059213179152-a7q1qnjp1jkgl72pahoe9fksrp82r6sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdtHtrL2kIZLy3KbxJ8BLSIZsfAEAk_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059213179152-a7q1qnjp1jkgl72pahoe9fksrp82r6sl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059213179152:android:98817c275941c8960b8d95",
+        "android_client_info": {
+          "package_name": "com.vishal.contactbackup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059213179152-v0gdt0lo97i8q38igjd747dscbu3g1q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vishal.contactbackup",
+            "certificate_hash": "23d733e025ae083b52972ea3d630570b2abeba30"
+          }
+        },
+        {
+          "client_id": "1059213179152-a7q1qnjp1jkgl72pahoe9fksrp82r6sl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdtHtrL2kIZLy3KbxJ8BLSIZsfAEAk_cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059213179152-a7q1qnjp1jkgl72pahoe9fksrp82r6sl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

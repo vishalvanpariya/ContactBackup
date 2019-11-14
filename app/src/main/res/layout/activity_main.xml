@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/contactsicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mybackupicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/backup"
+        app:layout_constraintEnd_toStartOf="@id/recenticon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mybackuptext"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mybackuptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Backup"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/mybackupicon"
+        app:layout_constraintEnd_toEndOf="@id/mybackupicon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/recenticon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/recent"
+        app:layout_constraintEnd_toStartOf="@id/contactsicon"
+        app:layout_constraintStart_toEndOf="@id/mybackupicon"
+        app:layout_constraintBottom_toTopOf="@id/recenttext"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/recenttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/recenticon"
+        app:layout_constraintEnd_toEndOf="@id/recenticon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/contactsicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/contacs"
+        app:layout_constraintEnd_toStartOf="@id/keypadicon"
+        app:layout_constraintStart_toEndOf="@id/recenticon"
+        app:layout_constraintBottom_toTopOf="@id/contactstext"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/contactstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacts"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/contactsicon"
+        app:layout_constraintEnd_toEndOf="@id/contactsicon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/keypadicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/keypad"
+        app:layout_constraintEnd_toStartOf="@id/newicon"
+        app:layout_constraintStart_toEndOf="@id/contactsicon"
+        app:layout_constraintBottom_toTopOf="@id/keypadtext"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/keypadtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Keypad"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/keypadicon"
+        app:layout_constraintEnd_toEndOf="@id/keypadicon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/newicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/newuser"
+        app:layout_constraintStart_toEndOf="@id/keypadicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/newtext"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/newtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/newicon"
+        app:layout_constraintEnd_toEndOf="@id/newicon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
