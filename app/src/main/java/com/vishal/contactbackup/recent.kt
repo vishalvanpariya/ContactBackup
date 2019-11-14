@@ -36,11 +36,15 @@ class recent : Fragment() {
     ): View? {
         var v=inflater.inflate(R.layout.fragment_recent, container, false)
 
-        var recentlist=getrecents()
 
-        var adapter= RecentAdepter(context,recentlist)
-        v.recycler.adapter=adapter
-        v.recycler.layoutManager= LinearLayoutManager(context)
+        Thread(Runnable {
+            activity!!.runOnUiThread(Runnable {
+                var recentlist=getrecents()
+                var adapter= RecentAdepter(context,recentlist)
+                v.recycler.adapter=adapter
+                v.recycler.layoutManager= LinearLayoutManager(context)
+            })
+        }).start()
 
         return v
     }

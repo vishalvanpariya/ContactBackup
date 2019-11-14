@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         transaction.add(R.id.frag, main_frag())
         transaction.commit()
 
+
         mybackupicon.setImageResource(R.drawable.backupblue)
         mybackuptext.setTextColor(resources.getColor(R.color.colorPrimary))
 
