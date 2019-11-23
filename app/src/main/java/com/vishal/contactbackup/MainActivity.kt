@@ -17,9 +17,6 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 
-
-
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
