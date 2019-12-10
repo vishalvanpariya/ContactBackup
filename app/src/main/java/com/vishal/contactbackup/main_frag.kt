@@ -35,8 +35,8 @@ import com.google.gson.reflect.TypeToken
 import com.suke.widget.SwitchButton
 import kotlinx.android.synthetic.main.fragment_main_frag.*
 import kotlinx.android.synthetic.main.fragment_main_frag.view.*
-import java.io.File
-import java.io.FileOutputStream
+import java.io.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import kotlin.random.Random
 
@@ -73,6 +73,24 @@ class main_frag : Fragment() {
                     ), 200
                 )
             }
+        }
+
+        var back = v.findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            var alertDialog= AlertDialog.Builder(context!!)
+                .setTitle("Exit")
+                .setMessage("Do you want to Exit?")
+                .setPositiveButton("Yes",object :DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                        activity!!.finish()
+                    }
+                }).setNegativeButton("No",object :DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                    }
+                })
+            alertDialog.show()
         }
 
         var fav =v.findViewById<ImageView>(R.id.fav)
@@ -172,7 +190,7 @@ class main_frag : Fragment() {
         var intent=Intent(activity,AutoBackup_Receiver::class.java)
         var pendingintent= PendingIntent.getBroadcast(activity,101,intent,0)
         var alarmManager=activity!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+600000,pendingintent)
+        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+1800000,pendingintent)
     }
 
     fun stopauto(){
@@ -254,15 +272,18 @@ class main_frag : Fragment() {
                                     if (a) {
                                         numlist.add(phoneNo)
                                         namelist.add(name)
-                                        val lookupKey =
-                                            cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY))
+                                        val lookupKey =cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY))
                                         val uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey)
-                                        val fd: AssetFileDescriptor?
-                                        fd = context!!.getContentResolver()
-                                            .openAssetFileDescriptor(uri, "r")
-                                        val fis = fd!!.createInputStream()
-                                        val buf = ByteArray(fd.getDeclaredLength().toInt())
-                                        fis.read(buf)
+                                        var fd :AssetFileDescriptor
+                                        var fis:FileInputStream
+                                        var buf:ByteArray
+                                        Log.d("xxxx","${uri}")
+                                        fd= activity!!.applicationContext.contentResolver.openAssetFileDescriptor(uri, "r")!!
+                                        fis = fd.createInputStream()
+//                                        buf = ByteArray(fd.getDeclaredLength().toInt())
+//                                        fd.close()
+//                                        fis.read(buf)
+                                        buf=readfile(fis)
                                         val vcardstring = String(buf)
                                         val storage_path =
                                             Environment.getExternalStorageDirectory().toString() + filename
@@ -303,5 +324,35 @@ class main_frag : Fragment() {
     }
 
     class BackUpData(var file:String,var time:String,var numofnum:Int)
+
+    @Throws(IOException::class)
+    fun readfile(file: FileInputStream): ByteArray {
+        var ous: ByteArrayOutputStream? = null
+        var ios: InputStream? = null
+        try {
+            val buffer = ByteArray(4096)
+            ous = ByteArrayOutputStream()
+            ios = file
+            var read = 0
+            read = ios.read(buffer)
+            while (read != -1) {
+                ous.write(buffer, 0, read)
+                read=ios.read(buffer)
+            }
+        } finally {
+            try {
+                ous?.close()
+            } catch (e: IOException) {
+            }
+
+            try {
+                ios?.close()
+            } catch (e: IOException) {
+            }
+
+        }
+        return ous!!.toByteArray()
+    }
+
 
 }

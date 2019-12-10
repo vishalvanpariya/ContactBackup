@@ -2,6 +2,7 @@ package com.vishal.contactbackup
 
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.provider.CallLog
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +38,23 @@ class recent : Fragment() {
     ): View? {
         var v=inflater.inflate(R.layout.fragment_recent, container, false)
 
+        var back = v.findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            var alertDialog= AlertDialog.Builder(context!!)
+                .setTitle("Exit")
+                .setMessage("Do you want to Exit?")
+                .setPositiveButton("Yes",object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                        activity!!.finish()
+                    }
+                }).setNegativeButton("No",object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                    }
+                })
+            alertDialog.show()
+        }
 
         Thread(Runnable {
             activity!!.runOnUiThread(Runnable {

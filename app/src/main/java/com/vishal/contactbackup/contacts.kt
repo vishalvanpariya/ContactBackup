@@ -4,6 +4,7 @@ package com.vishal.contactbackup
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.provider.ContactsContract
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,6 +60,24 @@ class contacts : Fragment() {
                 numofnum.text="Contacts(${namelist.size})"
             })
         }).start()
+
+        var back = v.findViewById<ImageView>(R.id.back)
+        back.setOnClickListener {
+            var alertDialog= AlertDialog.Builder(context!!)
+                .setTitle("Exit")
+                .setMessage("Do you want to Exit?")
+                .setPositiveButton("Yes",object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                        activity!!.finish()
+                    }
+                }).setNegativeButton("No",object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        p0!!.dismiss()
+                    }
+                })
+            alertDialog.show()
+        }
 
         return v
     }

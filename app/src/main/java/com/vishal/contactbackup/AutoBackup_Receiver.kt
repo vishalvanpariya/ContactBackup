@@ -10,8 +10,6 @@ import android.os.Environment
 import android.provider.ContactsContract
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
-import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.LinkedHashSet
@@ -22,6 +20,7 @@ import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.util.Log
 import androidx.core.content.ContextCompat.getSystemService
+import java.io.*
 
 
 class AutoBackup_Receiver : BroadcastReceiver() {
@@ -102,15 +101,18 @@ class AutoBackup_Receiver : BroadcastReceiver() {
                             if (a) {
                                 numlist.add(phoneNo)
                                 namelist.add(name)
-                                val lookupKey =
-                                    cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY))
+                                val lookupKey =cur.getString(cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY))
                                 val uri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey)
-                                val fd: AssetFileDescriptor?
-                                fd = context!!.getContentResolver()
-                                    .openAssetFileDescriptor(uri, "r")
-                                val fis = fd!!.createInputStream()
-                                val buf = ByteArray(fd.getDeclaredLength().toInt())
-                                fis.read(buf)
+                                var fd :AssetFileDescriptor
+                                var fis: FileInputStream
+                                var buf:ByteArray
+                                Log.d("xxxx","${uri}")
+                                fd= context.applicationContext.contentResolver.openAssetFileDescriptor(uri, "r")!!
+                                fis = fd.createInputStream()
+//                                        buf = ByteArray(fd.getDeclaredLength().toInt())
+//                                        fd.close()
+//                                        fis.read(buf)
+                                buf=readfile(fis)
                                 val vcardstring = String(buf)
                                 val storage_path =
                                     Environment.getExternalStorageDirectory().toString() + filename
@@ -143,5 +145,34 @@ class AutoBackup_Receiver : BroadcastReceiver() {
         editor.putString("backuplist",backupliststr)
         editor.apply()
 
+    }
+
+    @Throws(IOException::class)
+    fun readfile(file: FileInputStream): ByteArray {
+        var ous: ByteArrayOutputStream? = null
+        var ios: InputStream? = null
+        try {
+            val buffer = ByteArray(4096)
+            ous = ByteArrayOutputStream()
+            ios = file
+            var read = 0
+            read = ios.read(buffer)
+            while (read != -1) {
+                ous.write(buffer, 0, read)
+                read=ios.read(buffer)
+            }
+        } finally {
+            try {
+                ous?.close()
+            } catch (e: IOException) {
+            }
+
+            try {
+                ios?.close()
+            } catch (e: IOException) {
+            }
+
+        }
+        return ous!!.toByteArray()
     }
 }
