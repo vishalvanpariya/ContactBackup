@@ -149,6 +149,7 @@ class main_frag : Fragment() {
                             activity!!.finish()
                         }
                     })
+                    .setCancelable(false)
                 alertDialog.show()
             }
         }
