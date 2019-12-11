@@ -6,10 +6,13 @@ import kotlinx.android.synthetic.main.activity_backup_saved.*
 import android.content.Intent
 import android.net.Uri
 import android.os.Environment
+import androidx.core.content.FileProvider
 import java.io.File
 
 
 class BackupSaved : AppCompatActivity() {
+
+    var AUTHORITY="com.vishal.contactbackup"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ class BackupSaved : AppCompatActivity() {
         restore.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.setDataAndType(
-                Uri.fromFile(File("${Environment.getExternalStorageDirectory()}$file")),
+                FileProvider.getUriForFile(this,AUTHORITY,File("${Environment.getExternalStorageDirectory()}$file")),
                 "text/x-vcard"
             )
             startActivity(intent)
